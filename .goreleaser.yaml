@@ -1,0 +1,21 @@
+builds:
+  -
+    id: "judoka-cli"
+    main: ./cli
+    binary: judoka
+
+    flags:
+      - -tags=boxer_enable_profiling
+      - -v
+
+    env:
+      - CGO_ENABLED=0
+
+    goos:
+      - linux
+      - windows
+
+    goarch:
+      - amd64
+
+    mod_timestamp: "{{ .CommitTimestamp }}"
