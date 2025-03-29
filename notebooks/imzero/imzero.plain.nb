@@ -7,757 +7,710 @@
 (* https://resources.wolframcloud.com/FunctionRepository/resources/SaveReadableNotebook *)
 
 Notebook[
- {
-  Cell[
-   BoxData[
-    RowBox[
-     {
-      RowBox[
-       {
-        RowBox[
-         {"ResourceFunction", "[", "\"SaveReadableNotebook\"", "]"}
-        ],
-        "[",
-        RowBox[
-         {
-          RowBox[{"InputNotebook", "[", "]"}],
-          ",",
-          RowBox[
-           {
-            "StringReplace",
-            "[",
-            " ",
-            RowBox[
-             {
-              RowBox[{"NotebookFileName", "[", "]"}],
-              ",",
-              RowBox[
-               {
-                RowBox[{"RegularExpression", "[", "\"[.]nb$\"", "]"}],
-                "->",
-                "\".clean.nb\""
-               }
-              ]
-             }
-            ],
-            "]"
-           }
-          ]
-         }
-        ],
-        "]"
-       }
-      ],
-      ";"
-     }
-    ]
-   ],
-   "Input",
-   CellLabel -> "In[118]:="
-  ],
-  Cell[
-   CellGroupData[
-    {
-     Cell[
-      BoxData[
-       RowBox[
-        {
-         RowBox[
-          {
-           "imzeroClientProc",
-           "=",
-           RowBox[
+   {
+      Cell[
+         CellGroupData[
             {
-             "Block",
-             "[",
-             RowBox[
-              {
-               RowBox[
-                {
-                 "{",
-                 RowBox[
-                  {"imguiClientBinary", ",", "ttfFilePath", ",", "proc"}
-                 ],
-                 "}"
-                }
-               ],
-               ",",
-               "\[IndentingNewLine]",
-               RowBox[
-                {
-                 RowBox[
-                  {
-                   "imguiClientBinary",
-                   "=",
-                   RowBox[
-                    {
-                     "FileNameJoin",
-                     "[",
+               Cell[
+                  BoxData[
                      RowBox[
-                      {
-                       "{",
-                       RowBox[
                         {
-                         "$HomeDirectory",
-                         ",",
-                         "\"repo\"",
-                         ",",
-                         "\"imzero_client_cpp\"",
-                         ",",
-                         "\"skia\"",
-                         ",",
-                         "\"bin\"",
-                         ",",
-                         "\"imgui_skia_exe\""
-                        }
-                       ],
-                       "}"
-                      }
-                     ],
-                     "]"
-                    }
-                   ]
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[
-                  {
-                   "ttfFilePath",
-                   "=",
-                   "\"/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf\""
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[
-                  {
-                   "proc",
-                   "=",
-                   RowBox[
-                    {
-                     "StartProcess",
-                     "[",
-                     RowBox[
-                      {
-                       "{",
-                       RowBox[
-                        {
-                         "imguiClientBinary",
-                         "\[IndentingNewLine]",
-                         ",",
-                         "\"-ttfFilePath\"",
-                         ",",
-                         "ttfFilePath",
-                         "\[IndentingNewLine]",
-                         ",",
-                         "\"-fffiInterpreter\"",
-                         ",",
-                         " ",
-                         "\"on\"",
-                         "\[IndentingNewLine]",
-                         ",",
-                         "\"-skiaBackendType\"",
-                         ",",
-                         " ",
-                         "\"gl\"",
-                         "\[IndentingNewLine]",
-                         ",",
-                         " ",
-                         "\"-vsync\"",
-                         ",",
-                         " ",
-                         "\"on\"",
-                         "\[IndentingNewLine]",
-                         ",",
-                         " ",
-                         "\"-backdropFilter\"",
-                         ",",
-                         " ",
-                         "\"off\""
-                        }
-                       ],
-                       "\[IndentingNewLine]",
-                       "}"
-                      }
-                     ],
-                     "]"
-                    }
-                   ]
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[
-                  {
-                   "Print",
-                   "[",
-                   RowBox[
-                    {
-                     "If",
-                     "[",
-                     RowBox[
-                      {
-                       RowBox[{"FailureQ", "[", "proc", "]"}],
-                       ",",
-                       "\"\"",
-                       ",",
-                       RowBox[
-                        {
-                         "ReadString",
-                         "[",
-                         RowBox[
-                          {
                            RowBox[
-                            {
-                             "ProcessConnection",
-                             "[",
-                             RowBox[{"proc", ",", "\"StandardError\""}],
-                             "]"
-                            }
+                              {
+                                 "imzeroClientProc",
+                                 "=",
+                                 RowBox[
+                                    {
+                                       "Block",
+                                       "[",
+                                       RowBox[
+                                          {
+                                             RowBox[
+                                                {
+                                                   "{",
+                                                   RowBox[
+                                                      {"imguiClientBinary", ",", "ttfFilePath", ",", "proc"}
+                                                   ],
+                                                   "}"
+                                                }
+                                             ],
+                                             ",",
+                                             "",
+                                             RowBox[
+                                                {
+                                                   RowBox[
+                                                      {
+                                                         "imguiClientBinary",
+                                                         "=",
+                                                         RowBox[
+                                                            {
+                                                               "FileNameJoin",
+                                                               "[",
+                                                               RowBox[
+                                                                  {
+                                                                     "{",
+                                                                     RowBox[
+                                                                        {
+                                                                           "$HomeDirectory",
+                                                                           ",",
+                                                                           "\"repo\"",
+                                                                           ",",
+                                                                           "\"imzero_client_cpp\"",
+                                                                           ",",
+                                                                           "\"skia\"",
+                                                                           ",",
+                                                                           "\"bin\"",
+                                                                           ",",
+                                                                           "\"imgui_skia_exe\""
+                                                                        }
+                                                                     ],
+                                                                     "}"
+                                                                  }
+                                                               ],
+                                                               "]"
+                                                            }
+                                                         ]
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   RowBox[
+                                                      {
+                                                         "ttfFilePath",
+                                                         "=",
+                                                         "\"/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf\""
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   RowBox[
+                                                      {
+                                                         "proc",
+                                                         "=",
+                                                         RowBox[
+                                                            {
+                                                               "StartProcess",
+                                                               "[",
+                                                               RowBox[
+                                                                  {
+                                                                     "{",
+                                                                     RowBox[
+                                                                        {
+                                                                           "imguiClientBinary",
+                                                                           "",
+                                                                           ",",
+                                                                           "\"-ttfFilePath\"",
+                                                                           ",",
+                                                                           "ttfFilePath",
+                                                                           "",
+                                                                           ",",
+                                                                           "\"-fffiInterpreter\"",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"on\"",
+                                                                           "",
+                                                                           ",",
+                                                                           "\"-skiaBackendType\"",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"gl\"",
+                                                                           "",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"-vsync\"",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"on\"",
+                                                                           "",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"-backdropFilter\"",
+                                                                           ",",
+                                                                           " ",
+                                                                           "\"off\""
+                                                                        }
+                                                                     ],
+                                                                     "",
+                                                                     "}"
+                                                                  }
+                                                               ],
+                                                               "]"
+                                                            }
+                                                         ]
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   RowBox[
+                                                      {
+                                                         "Print",
+                                                         "[",
+                                                         RowBox[
+                                                            {
+                                                               "If",
+                                                               "[",
+                                                               RowBox[
+                                                                  {
+                                                                     RowBox[{"FailureQ", "[", "proc", "]"}],
+                                                                     ",",
+                                                                     "\"\"",
+                                                                     ",",
+                                                                     RowBox[
+                                                                        {
+                                                                           "ReadString",
+                                                                           "[",
+                                                                           RowBox[
+                                                                              {
+                                                                                 RowBox[
+                                                                                    {
+                                                                                       "ProcessConnection",
+                                                                                       "[",
+                                                                                       RowBox[{"proc", ",", "\"StandardError\""}],
+                                                                                       "]"
+                                                                                    }
+                                                                                 ],
+                                                                                 ",",
+                                                                                 "EndOfBuffer"
+                                                                              }
+                                                                           ],
+                                                                           "]"
+                                                                        }
+                                                                     ]
+                                                                  }
+                                                               ],
+                                                               "]"
+                                                            }
+                                                         ],
+                                                         "]"
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   "proc"
+                                                }
+                                             ]
+                                          }
+                                       ],
+                                       "",
+                                       "]"
+                                    }
+                                 ]
+                              }
                            ],
-                           ",",
-                           "EndOfBuffer"
-                          }
-                         ],
-                         "]"
+                           ";"
                         }
-                       ]
-                      }
-                     ],
-                     "]"
-                    }
-                   ],
-                   "]"
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 "proc"
-                }
-               ]
-              }
-             ],
-             "\[IndentingNewLine]",
-             "]"
-            }
-           ]
-          }
-         ],
-         ";"
-        }
-       ]
-      ],
-      "Input",
-      CellLabel -> "In[39]:="
-     ],
-     Cell[
-      BoxData[""],
-      "Print",
-      GeneratedCell -> False,
-      CellAutoOverwrite -> False
-     ]
-    },
-    Open
-   ]
-  ],
-  Cell[
-   BoxData[
-    {
-     RowBox[
-      {RowBox[{"procIdFlush", "=", " ", "16^^ffffffff"}], ";"}
-     ],
-     "\[IndentingNewLine]",
-     RowBox[{RowBox[{"byteOrder", "=", "$ByteOrdering"}], ";"}],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         "server2client",
-         "=",
-         RowBox[
-          {
-           "ProcessConnection",
-           "[",
-           RowBox[{"imzeroClientProc", ",", "\"StandardInput\""}],
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         "client2server",
-         "=",
-         RowBox[
-          {
-           "ProcessConnection",
-           "[",
-           RowBox[{"imzeroClientProc", ",", "\"StandardOutput\""}],
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ]
-    }
-   ],
-   "Input",
-   CellLabel -> "In[40]:="
-  ],
-  Cell[
-   BoxData[
-    {
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"addProcedureId", "[", "id_Integer", "]"}],
-         ":=",
-         RowBox[{"writeUint32", "[", "id", "]"}]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"writeUint8", "[", "v_Integer", "]"}],
-         ":=",
-         RowBox[
-          {
-           "BinaryWrite",
-           "[",
-           RowBox[
-            {
-             "server2client",
-             ",",
-             " ",
-             "v",
-             ",",
-             "\"UnsignedInteger8\"",
-             ",",
-             RowBox[{"ByteOrdering", "->", "byteOrder"}]
-            }
-           ],
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"writeUint32", "[", "v_Integer", "]"}],
-         ":=",
-         RowBox[
-          {
-           "BinaryWrite",
-           "[",
-           RowBox[
-            {
-             "server2client",
-             ",",
-             " ",
-             "v",
-             ",",
-             "\"UnsignedInteger32\"",
-             ",",
-             RowBox[{"ByteOrdering", "->", "byteOrder"}]
-            }
-           ],
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"writeSliceLength", "[", "l_Integer", "]"}],
-         ":=",
-         RowBox[{"writeUint32", "[", "l", "]"}]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"writeBool", "[", "v_", "]"}],
-         ":=",
-         RowBox[
-          {"writeUint8", "[", RowBox[{"Boole", "[", "v", "]"}], "]"}
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"writeString", "[", "s_String", "]"}],
-         ":=",
-         RowBox[
-          {
-           "Block",
-           "[",
-           RowBox[
-            {
-             RowBox[{"{", "utf8", "}"}],
-             ",",
-             "\[IndentingNewLine]",
-             RowBox[
-              {
-               RowBox[
-                {
-                 "utf8",
-                 "=",
-                 RowBox[
-                  {
-                   "StringToByteArray",
-                   "[",
-                   RowBox[{"s", ",", "\"UTF-8\""}],
-                   "]"
-                  }
-                 ]
-                }
-               ],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[
-                {
-                 "writeSliceLength",
-                 "[",
-                 RowBox[{"Length", "[", "utf8", "]"}],
-                 "]"
-                }
-               ],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[
-                {
-                 "BinaryWrite",
-                 "[",
-                 RowBox[{"server2client", ",", "utf8"}],
-                 "]"
-                }
-               ],
-               ";"
-              }
-             ]
-            }
-           ],
-           "\[IndentingNewLine]",
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {RowBox[{RowBox[{"call", "[", "]"}], ":=", "None"}], ";"}
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"flush", "[", "]"}],
-         " ",
-         ":=",
-         " ",
-         RowBox[{"addProcedureId", "[", "procIdFlush", "]"}]
-        }
-       ],
-       ";"
-      }
-     ]
-    }
-   ],
-   "Input",
-   CellLabel -> "In[44]:="
-  ],
-  Cell[
-   BoxData[
-    RowBox[
-     {
-      RowBox[
-       {
-        RowBox[{"readBool", "[", "]"}],
-        ":=",
-        RowBox[
-         {
-          RowBox[
-           {
-            "BinaryRead",
-            "[",
-            RowBox[{"client2server", ",", "\"UnsignedInteger8\""}],
-            "]"
-           }
-          ],
-          "==",
-          "1"
-         }
-        ]
-       }
-      ],
-      ";"
-     }
-    ]
-   ],
-   "Input",
-   CellLabel -> "In[52]:="
-  ],
-  Cell[
-   BoxData[
-    {
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"textUnformatted", "[", "s_String", "]"}],
-         ":=",
-         RowBox[
-          {
-           "Block",
-           "[",
-           RowBox[
-            {
-             RowBox[{"{", "}"}],
-             ",",
-             "\[IndentingNewLine]",
-             RowBox[
-              {
-               RowBox[{"addProcedureId", "[", "16^^000002be", "]"}],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[{"writeString", "[", "s", "]"}],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[{"call", "[", "]"}],
-               ";"
-              }
-             ]
-            }
-           ],
-           "\[IndentingNewLine]",
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         RowBox[{"begin", "[", "s_String", "]"}],
-         ":=",
-         RowBox[
-          {
-           "Block",
-           "[",
-           RowBox[
-            {
-             RowBox[{"{", "}"}],
-             ",",
-             "\[IndentingNewLine]",
-             RowBox[
-              {
-               RowBox[{"addProcedureId", "[", "16^^000000bf", "]"}],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[{"writeString", "[", "s", "]"}],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[{"call", "[", "]"}],
-               ";",
-               "\[IndentingNewLine]",
-               RowBox[{"(*", RowBox[{"readBool", "[", "]"}], "*)"}],
-               "\[IndentingNewLine]",
-               "True"
-              }
-             ]
-            }
-           ],
-           "\[IndentingNewLine]",
-           "]"
-          }
-         ]
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[{"end", "[", "]"}],
-       " ",
-       ":=",
-       RowBox[
-        {
-         "(",
-         RowBox[
-          {
-           RowBox[{"addProcedureId", "[", "16^^000000c1", "]"}],
-           ";",
-           " ",
-           RowBox[{"call", "[", "]"}],
-           ";"
-          }
-         ],
-         ")"
-        }
-       ]
-      }
-     ]
-    }
-   ],
-   "Input",
-   CellLabel -> "In[53]:="
-  ],
-  Cell[
-   BoxData[
-    {
-     RowBox[{RowBox[{"flush", "[", "]"}], ";"}],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[
-        {
-         "For",
-         "[",
-         RowBox[
-          {
-           RowBox[{"i", "=", "0"}],
-           ",",
-           RowBox[{"i", "<", "2000"}],
-           ",",
-           RowBox[{"i", "++"}],
-           ",",
-           "\[IndentingNewLine]",
-           RowBox[
-            {
-             "Block",
-             "[",
-             RowBox[
-              {
-               RowBox[{"{", "open", "}"}],
-               ",",
-               "\[IndentingNewLine]",
-               RowBox[
-                {
-                 RowBox[
-                  {
-                   "open",
-                   "=",
-                   RowBox[{"begin", "[", "\"hello wolfram\"", "]"}]
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[
-                  {
-                   "If",
-                   "[",
-                   RowBox[
-                    {
-                     "open",
-                     ",",
-                     "\[IndentingNewLine]",
-                     RowBox[
-                      {
-                       "textUnformatted",
-                       "[",
-                       RowBox[
-                        {
-                         "\"hello wolfram \"",
-                         "<>",
-                         RowBox[{"ToString", "[", "i", "]"}]
-                        }
-                       ],
-                       "]"
-                      }
                      ]
-                    }
-                   ],
-                   "]"
-                  }
-                 ],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[{"end", "[", "]"}],
-                 ";",
-                 "\[IndentingNewLine]",
-                 RowBox[{"flush", "[", "]"}],
-                 ";"
-                }
+                  ],
+                  "Input",
+                  CellLabel -> "In[39]:="
+               ],
+               Cell[
+                  BoxData[""],
+                  "Print",
+                  GeneratedCell -> False,
+                  CellAutoOverwrite -> False
                ]
-              }
-             ],
-             "\[IndentingNewLine]",
-             "]"
+            },
+            Open
+         ]
+      ],
+      Cell[
+         BoxData[
+            {
+               RowBox[
+                  {RowBox[{"procIdFlush", "=", " ", "16^^ffffffff"}], ";"}
+               ],
+               "",
+               RowBox[{RowBox[{"byteOrder", "=", "$ByteOrdering"}], ";"}],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           "server2client",
+                           "=",
+                           RowBox[
+                              {
+                                 "ProcessConnection",
+                                 "[",
+                                 RowBox[{"imzeroClientProc", ",", "\"StandardInput\""}],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           "client2server",
+                           "=",
+                           RowBox[
+                              {
+                                 "ProcessConnection",
+                                 "[",
+                                 RowBox[{"imzeroClientProc", ",", "\"StandardOutput\""}],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ]
             }
-           ]
-          }
          ],
-         "\[IndentingNewLine]",
-         "]"
-        }
-       ],
-       ";"
-      }
-     ],
-     "\[IndentingNewLine]",
-     RowBox[
-      {
-       RowBox[{"KillProcess", "[", "imzeroClientProc", "]"}],
-       ";"
-      }
-     ]
-    }
-   ],
-   "Input",
-   CellLabel -> "In[56]:="
-  ]
- },
- FrontEndVersion -> "14.2 for Linux x86 (64-bit) (December 26, 2024)",
- StyleDefinitions -> "Default.nb",
- ExpressionUUID -> "8d6ee125-5344-4358-9556-627e0b7cb8da"
+         "Input",
+         CellLabel -> "In[40]:="
+      ],
+      Cell[
+         BoxData[
+            {
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"addProcedureId", "[", "id_Integer", "]"}],
+                           ":=",
+                           RowBox[{"writeUint32", "[", "id", "]"}]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeUint8", "[", "v_Integer", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "BinaryWrite",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       "server2client",
+                                       ",",
+                                       " ",
+                                       "v",
+                                       ",",
+                                       "\"UnsignedInteger8\"",
+                                       ",",
+                                       RowBox[{"ByteOrdering", "->", "byteOrder"}]
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeUint32", "[", "v_Integer", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "BinaryWrite",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       "server2client",
+                                       ",",
+                                       " ",
+                                       "v",
+                                       ",",
+                                       "\"UnsignedInteger32\"",
+                                       ",",
+                                       RowBox[{"ByteOrdering", "->", "byteOrder"}]
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeSliceLength", "[", "l_Integer", "]"}],
+                           ":=",
+                           RowBox[{"writeUint32", "[", "l", "]"}]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeBool", "[", "v_", "]"}],
+                           ":=",
+                           RowBox[
+                              {"writeUint8", "[", RowBox[{"Boole", "[", "v", "]"}], "]"}
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeString", "[", "s_String", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "Block",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       RowBox[{"{", "utf8", "}"}],
+                                       ",",
+                                       "",
+                                       RowBox[
+                                          {
+                                             RowBox[
+                                                {
+                                                   "utf8",
+                                                   "=",
+                                                   RowBox[
+                                                      {
+                                                         "StringToByteArray",
+                                                         "[",
+                                                         RowBox[{"s", ",", "\"UTF-8\""}],
+                                                         "]"
+                                                      }
+                                                   ]
+                                                }
+                                             ],
+                                             ";",
+                                             "",
+                                             RowBox[
+                                                {
+                                                   "writeSliceLength",
+                                                   "[",
+                                                   RowBox[{"Length", "[", "utf8", "]"}],
+                                                   "]"
+                                                }
+                                             ],
+                                             ";",
+                                             "",
+                                             RowBox[
+                                                {
+                                                   "BinaryWrite",
+                                                   "[",
+                                                   RowBox[{"server2client", ",", "utf8"}],
+                                                   "]"
+                                                }
+                                             ],
+                                             ";"
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "",
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {RowBox[{RowBox[{"call", "[", "]"}], ":=", "None"}], ";"}
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"flush", "[", "]"}],
+                           " ",
+                           ":=",
+                           " ",
+                           RowBox[{"addProcedureId", "[", "procIdFlush", "]"}]
+                        }
+                     ],
+                     ";"
+                  }
+               ]
+            }
+         ],
+         "Input",
+         CellLabel -> "In[44]:="
+      ],
+      Cell[
+         BoxData[
+            RowBox[
+               {
+                  RowBox[
+                     {
+                        RowBox[{"readBool", "[", "]"}],
+                        ":=",
+                        RowBox[
+                           {
+                              RowBox[
+                                 {
+                                    "BinaryRead",
+                                    "[",
+                                    RowBox[{"client2server", ",", "\"UnsignedInteger8\""}],
+                                    "]"
+                                 }
+                              ],
+                              "==",
+                              "1"
+                           }
+                        ]
+                     }
+                  ],
+                  ";"
+               }
+            ]
+         ],
+         "Input",
+         CellLabel -> "In[52]:="
+      ],
+      Cell[
+         BoxData[
+            {
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"textUnformatted", "[", "s_String", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "Block",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       RowBox[{"{", "}"}],
+                                       ",",
+                                       "",
+                                       RowBox[
+                                          {
+                                             RowBox[{"addProcedureId", "[", "16^^000002be", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeString", "[", "s", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"call", "[", "]"}],
+                                             ";"
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "",
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"begin", "[", "s_String", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "Block",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       RowBox[{"{", "}"}],
+                                       ",",
+                                       "",
+                                       RowBox[
+                                          {
+                                             RowBox[{"addProcedureId", "[", "16^^000000bf", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeString", "[", "s", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"call", "[", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"(*", RowBox[{"readBool", "[", "]"}], "*)"}],
+                                             "",
+                                             "True"
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "",
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[{"end", "[", "]"}],
+                     " ",
+                     ":=",
+                     RowBox[
+                        {
+                           "(",
+                           RowBox[
+                              {
+                                 RowBox[{"addProcedureId", "[", "16^^000000c1", "]"}],
+                                 ";",
+                                 " ",
+                                 RowBox[{"call", "[", "]"}],
+                                 ";"
+                              }
+                           ],
+                           ")"
+                        }
+                     ]
+                  }
+               ]
+            }
+         ],
+         "Input",
+         CellLabel -> "In[53]:="
+      ],
+      Cell[
+         BoxData[
+            {
+               RowBox[{RowBox[{"flush", "[", "]"}], ";"}],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           "For",
+                           "[",
+                           RowBox[
+                              {
+                                 RowBox[{"i", "=", "0"}],
+                                 ",",
+                                 RowBox[{"i", "<", "2000"}],
+                                 ",",
+                                 RowBox[{"i", "++"}],
+                                 ",",
+                                 "",
+                                 RowBox[
+                                    {
+                                       "Block",
+                                       "[",
+                                       RowBox[
+                                          {
+                                             RowBox[{"{", "open", "}"}],
+                                             ",",
+                                             "",
+                                             RowBox[
+                                                {
+                                                   RowBox[
+                                                      {
+                                                         "open",
+                                                         "=",
+                                                         RowBox[{"begin", "[", "\"hello wolfram\"", "]"}]
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   RowBox[
+                                                      {
+                                                         "If",
+                                                         "[",
+                                                         RowBox[
+                                                            {
+                                                               "open",
+                                                               ",",
+                                                               "",
+                                                               RowBox[
+                                                                  {
+                                                                     "textUnformatted",
+                                                                     "[",
+                                                                     RowBox[
+                                                                        {
+                                                                           "\"hello wolfram \"",
+                                                                           "<>",
+                                                                           RowBox[{"ToString", "[", "i", "]"}]
+                                                                        }
+                                                                     ],
+                                                                     "]"
+                                                                  }
+                                                               ]
+                                                            }
+                                                         ],
+                                                         "]"
+                                                      }
+                                                   ],
+                                                   ";",
+                                                   "",
+                                                   RowBox[{"end", "[", "]"}],
+                                                   ";",
+                                                   "",
+                                                   RowBox[{"flush", "[", "]"}],
+                                                   ";"
+                                                }
+                                             ]
+                                          }
+                                       ],
+                                       "",
+                                       "]"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "",
+                           "]"
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[{"KillProcess", "[", "imzeroClientProc", "]"}],
+                     ";"
+                  }
+               ]
+            }
+         ],
+         "Input",
+         CellLabel -> "In[56]:="
+      ]
+   },
+   FrontEndVersion -> "14.2 for Linux x86 (64-bit) (December 26, 2024)",
+   StyleDefinitions -> "Default.nb",
+   ExpressionUUID -> "8d6ee125-5344-4358-9556-627e0b7cb8da"
 ]
