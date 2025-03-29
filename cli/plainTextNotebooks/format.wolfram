@@ -1,0 +1,6 @@
+nb=$ScriptCommandLine[[-1]];If[
+FileExistsQ[nb],ResourceFunction["SaveReadableNotebook"][nb,
+   StringReplace[nb, RegularExpression["%s"] -> "%s"],
+   "ExcludedCellOptions" -> {CellChangeTimes,ExpressionUUID},
+   CharacterEncoding -> "UTF8",
+   "IndentSize" -> 3]];

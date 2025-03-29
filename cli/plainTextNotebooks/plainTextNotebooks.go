@@ -3,6 +3,7 @@ package plainTextNotebooks
 import (
 	"bytes"
 	"context"
+	_ "embed"
 	"fmt"
 	"os"
 	"os/exec"
@@ -18,8 +19,11 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func cleanupNotebook(nb string, wolframScript string, nbRegex string, newSuffix string) {
-	code := fmt.Sprintf("nb=$ScriptCommandLine[[-1]];If[FileExistsQ[nb],ResourceFunction[\"SaveReadableNotebook\"][nb, StringReplace[nb, RegularExpression[\"%s\"] -> \"%s\"]]];", nbRegex, newSuffix)
+//go:embed format.wolfram
+var formatPlainTextNotebookCode string
+
+func formatPlainTextNotebook(nb string, wolframScript string, nbRegex string, newSuffix string) {
+	code := fmt.Sprintf(formatPlainTextNotebookCode, nbRegex, newSuffix)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 	p := exec.CommandContext(ctx, wolframScript, "-code", code, nb)
@@ -29,9 +33,10 @@ func cleanupNotebook(nb string, wolframScript string, nbRegex string, newSuffix 
 	p.Stdout = buf
 	err := p.Run()
 	if err != nil {
-		log.Warn().Str("code", code).Err(err).Str("stderr", buf.String()).Str("nb", nb).Msg("unable to cleanup notebook")
+		log.Warn().Str("code", code).Err(err).Str("stderr", buf.String()).Str("nb", nb).Msg("unable to format notebook")
 		err = nil
 	}
+	log.Info().Str("nb", nb).Msg("formated notebook to plain text")
 	return
 }
 
@@ -64,7 +69,7 @@ func plainTextNotebooks(maxEvents int, dir string, nbRegexp string, tryRun bool,
 			for _, p := range events {
 				log.Info().Str("path", p.Name).Msg("detected change")
 				if !tryRun {
-					cleanupNotebook(p.Name, wolframScript, nbRegexp, newSuffix)
+					formatPlainTextNotebook(p.Name, wolframScript, nbRegexp, newSuffix)
 				}
 			}
 			time.Sleep(time.Millisecond * 500)
