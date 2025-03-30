@@ -110,6 +110,7 @@ Notebook[
                                                                            "\"on\"",
                                                                            "",
                                                                            ",",
+                                                                           " ",
                                                                            "\"-skiaBackendType\"",
                                                                            ",",
                                                                            " ",
@@ -120,7 +121,7 @@ Notebook[
                                                                            "\"-vsync\"",
                                                                            ",",
                                                                            " ",
-                                                                           "\"on\"",
+                                                                           "\"off\"",
                                                                            "",
                                                                            ",",
                                                                            " ",
@@ -202,13 +203,14 @@ Notebook[
                      ]
                   ],
                   "Input",
-                  CellLabel -> "In[39]:="
+                  CellLabel -> "(Debug) In[1]:="
                ],
                Cell[
-                  BoxData[""],
+                  BoxData[
+                     "\"using fallback font manager (opt=(null),arg=(null))\\nIM_COL32_R_SHIFT=16\\nIM_COL32_G_SHIFT=8\\nIM_COL32_B_SHIFT=0\\nIM_COL32_A_SHIFT=24\\nIMGUI_USE_BGRA_PACKED_COLOR set\\n\""
+                  ],
                   "Print",
-                  GeneratedCell -> False,
-                  CellAutoOverwrite -> False
+                  CellLabel -> "(Debug) During evaluation of In[1]:="
                ]
             },
             Open
@@ -265,7 +267,7 @@ Notebook[
             }
          ],
          "Input",
-         CellLabel -> "In[40]:="
+         CellLabel -> "(Debug) In[2]:="
       ],
       Cell[
          BoxData[
@@ -342,6 +344,88 @@ Notebook[
                         }
                      ],
                      ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"writeUint64", "[", "v_Integer", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "BinaryWrite",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       "server2client",
+                                       ",",
+                                       " ",
+                                       "v",
+                                       ",",
+                                       "\"UnsignedInteger64\"",
+                                       ",",
+                                       RowBox[{"ByteOrdering", "->", "byteOrder"}]
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[
+                              {
+                                 RowBox[{"writeInt", "[", "v_Integer", "]"}],
+                                 ":=",
+                                 RowBox[
+                                    {
+                                       "BinaryWrite",
+                                       "[",
+                                       RowBox[
+                                          {
+                                             "server2client",
+                                             ",",
+                                             " ",
+                                             "v",
+                                             ",",
+                                             "\"UnsignedInteger32\"",
+                                             ",",
+                                             RowBox[{"ByteOrdering", "->", "byteOrder"}]
+                                          }
+                                       ],
+                                       "]"
+                                    }
+                                 ]
+                              }
+                           ],
+                           ";"
+                        }
+                     ],
+                     " ",
+                     RowBox[
+                        {
+                           "(*",
+                           " ",
+                           RowBox[
+                              {
+                                 RowBox[{"FIXME", " ", "sign", " ", "magnitude"}],
+                                 " ",
+                                 "..."
+                              }
+                           ],
+                           " ",
+                           "*)"
+                        }
+                     ]
                   }
                ],
                "",
@@ -460,38 +544,138 @@ Notebook[
             }
          ],
          "Input",
-         CellLabel -> "In[44]:="
+         CellLabel -> "(Debug) In[6]:="
       ],
       Cell[
          BoxData[
-            RowBox[
-               {
-                  RowBox[
-                     {
-                        RowBox[{"readBool", "[", "]"}],
-                        ":=",
-                        RowBox[
-                           {
-                              RowBox[
-                                 {
-                                    "BinaryRead",
-                                    "[",
-                                    RowBox[{"client2server", ",", "\"UnsignedInteger8\""}],
-                                    "]"
-                                 }
-                              ],
-                              "==",
-                              "1"
-                           }
-                        ]
-                     }
-                  ],
-                  ";"
-               }
-            ]
+            {
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"pp0", "[", "v_", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "(",
+                                 RowBox[
+                                    {RowBox[{"PrintTemporary", "[", "v", "]"}], ";", "v"}
+                                 ],
+                                 ")"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"readBool", "[", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 RowBox[
+                                    {
+                                       "First",
+                                       "[",
+                                       RowBox[
+                                          {
+                                             "ReadByteArray",
+                                             "[",
+                                             RowBox[{"client2server", ",", "1"}],
+                                             "]"
+                                          }
+                                       ],
+                                       "]"
+                                    }
+                                 ],
+                                 ">",
+                                 "0"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"readUint32", "[", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "ImportByteArray",
+                                 "[",
+                                 " ",
+                                 RowBox[
+                                    {
+                                       RowBox[
+                                          {
+                                             "ReadByteArray",
+                                             "[",
+                                             RowBox[{"client2server", ",", "4"}],
+                                             "]"
+                                          }
+                                       ],
+                                       ",",
+                                       "\"UnsignedInteger32\""
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[{"readString", "[", "]"}],
+                           ":=",
+                           RowBox[
+                              {
+                                 "ByteArrayToString",
+                                 "[",
+                                 " ",
+                                 RowBox[
+                                    {
+                                       RowBox[
+                                          {
+                                             "ReadByteArray",
+                                             "[",
+                                             RowBox[
+                                                {"client2server", ",", RowBox[{"readUint32", "[", "]"}]}
+                                             ],
+                                             "]"
+                                          }
+                                       ],
+                                       ",",
+                                       "\"UTF-8\""
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ]
+            }
          ],
          "Input",
-         CellLabel -> "In[52]:="
+         CellLabel -> "(Debug) In[16]:="
       ],
       Cell[
          BoxData[
@@ -561,9 +745,134 @@ Notebook[
                                              RowBox[{"call", "[", "]"}],
                                              ";",
                                              "",
-                                             RowBox[{"(*", RowBox[{"readBool", "[", "]"}], "*)"}],
+                                             RowBox[{"readBool", "[", "]"}]
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "",
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[
+                              {
+                                 "beginV",
+                                 "[",
+                                 RowBox[{"s_String", ",", "flags_Integer"}],
+                                 "]"
+                              }
+                           ],
+                           ":=",
+                           RowBox[
+                              {
+                                 "Block",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       RowBox[{"{", RowBox[{"r", ",", " ", "pOpen"}], "}"}],
+                                       ",",
+                                       "",
+                                       RowBox[
+                                          {
+                                             RowBox[{"addProcedureId", "[", "16^^000000c0", "]"}],
+                                             ";",
                                              "",
-                                             "True"
+                                             RowBox[{"writeString", "[", "s", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeInt", "[", "flags", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"call", "[", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"r", "=", RowBox[{"readBool", "[", "]"}]}],
+                                             ";",
+                                             "",
+                                             RowBox[{"pOpen", "=", RowBox[{"readBool", "[", "]"}]}],
+                                             ";",
+                                             "",
+                                             RowBox[{"{", RowBox[{"r", ",", "pOpen"}], "}"}]
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "",
+                                 "]"
+                              }
+                           ]
+                        }
+                     ],
+                     ";"
+                  }
+               ],
+               "",
+               RowBox[
+                  {
+                     RowBox[
+                        {
+                           RowBox[
+                              {
+                                 "inputText",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       "label_String",
+                                       ",",
+                                       " ",
+                                       "textIn_String",
+                                       ",",
+                                       " ",
+                                       "maxLength_Integer"
+                                    }
+                                 ],
+                                 "]"
+                              }
+                           ],
+                           ":=",
+                           RowBox[
+                              {
+                                 "Block",
+                                 "[",
+                                 RowBox[
+                                    {
+                                       RowBox[{"{", RowBox[{"textOut", ",", "changed"}], "}"}],
+                                       ",",
+                                       "",
+                                       RowBox[
+                                          {
+                                             RowBox[{"addProcedureId", "[", "16^^000002c4", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeString", "[", "label", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeString", "[", "textIn", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"writeUint64", "[", "maxLength", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"call", "[", "]"}],
+                                             ";",
+                                             "",
+                                             RowBox[{"textOut", "=", RowBox[{"readString", "[", "]"}]}],
+                                             ";",
+                                             "",
+                                             RowBox[{"changed", "=", RowBox[{"readBool", "[", "]"}]}],
+                                             ";",
+                                             "",
+                                             RowBox[{"{", RowBox[{"textOut", ",", "changed"}], "}"}]
                                           }
                                        ]
                                     }
@@ -603,7 +912,27 @@ Notebook[
             }
          ],
          "Input",
-         CellLabel -> "In[53]:="
+         CellLabel -> "(Debug) In[20]:="
+      ],
+      Cell[
+         BoxData[
+            RowBox[
+               {
+                  RowBox[
+                     {
+                        "snd",
+                        "=",
+                        RowBox[
+                           {"Sound", "[", RowBox[{"SoundNote", "[", "]"}], "]"}
+                        ]
+                     }
+                  ],
+                  ";"
+               }
+            ]
+         ],
+         "Input",
+         CellLabel -> "(Debug) In[25]:="
       ],
       Cell[
          BoxData[
@@ -614,78 +943,160 @@ Notebook[
                   {
                      RowBox[
                         {
-                           "For",
+                           "Block",
                            "[",
                            RowBox[
                               {
-                                 RowBox[{"i", "=", "0"}],
-                                 ",",
-                                 RowBox[{"i", "<", "2000"}],
-                                 ",",
-                                 RowBox[{"i", "++"}],
+                                 RowBox[{"{", RowBox[{"code", ",", "res"}], "}"}],
                                  ",",
                                  "",
                                  RowBox[
                                     {
-                                       "Block",
-                                       "[",
+                                       RowBox[{"code", "=", "\"\""}],
+                                       ";",
+                                       "",
+                                       RowBox[{"res", "=", "0"}],
+                                       ";",
+                                       "",
                                        RowBox[
                                           {
-                                             RowBox[{"{", "open", "}"}],
-                                             ",",
-                                             "",
+                                             "For",
+                                             "[",
                                              RowBox[
                                                 {
-                                                   RowBox[
-                                                      {
-                                                         "open",
-                                                         "=",
-                                                         RowBox[{"begin", "[", "\"hello wolfram\"", "]"}]
-                                                      }
-                                                   ],
-                                                   ";",
+                                                   RowBox[{"i", "=", "0"}],
+                                                   ",",
+                                                   RowBox[{"i", "<", "2000"}],
+                                                   ",",
+                                                   RowBox[{"i", "++"}],
+                                                   ",",
                                                    "",
                                                    RowBox[
                                                       {
-                                                         "If",
+                                                         "Block",
                                                          "[",
                                                          RowBox[
                                                             {
-                                                               "open",
+                                                               RowBox[{"{", RowBox[{"r", ",", "isOpen"}], "}"}],
                                                                ",",
                                                                "",
                                                                RowBox[
                                                                   {
-                                                                     "textUnformatted",
-                                                                     "[",
                                                                      RowBox[
                                                                         {
-                                                                           "\"hello wolfram \"",
-                                                                           "<>",
-                                                                           RowBox[{"ToString", "[", "i", "]"}]
+                                                                           RowBox[{"{", RowBox[{"r", ",", "isOpen"}], "}"}],
+                                                                           "=",
+                                                                           RowBox[
+                                                                              {
+                                                                                 "beginV",
+                                                                                 "[",
+                                                                                 RowBox[{"\"hello wolfram\"", ",", "0"}],
+                                                                                 "]"
+                                                                              }
+                                                                           ]
                                                                         }
                                                                      ],
-                                                                     "]"
+                                                                     ";",
+                                                                     "",
+                                                                     RowBox[
+                                                                        {
+                                                                           "If",
+                                                                           "[",
+                                                                           RowBox[
+                                                                              {
+                                                                                 "isOpen",
+                                                                                 ",",
+                                                                                 "",
+                                                                                 RowBox[
+                                                                                    {
+                                                                                       "Block",
+                                                                                       "[",
+                                                                                       RowBox[
+                                                                                          {
+                                                                                             RowBox[{"{", "changed", "}"}],
+                                                                                             ",",
+                                                                                             "",
+                                                                                             RowBox[
+                                                                                                {
+                                                                                                   RowBox[
+                                                                                                      {
+                                                                                                         RowBox[{"{", RowBox[{"code", ",", "changed"}], "}"}],
+                                                                                                         "=",
+                                                                                                         RowBox[
+                                                                                                            {
+                                                                                                               "inputText",
+                                                                                                               "[",
+                                                                                                               RowBox[{"\"code\"", ",", "code", ",", "1024"}],
+                                                                                                               "]"
+                                                                                                            }
+                                                                                                         ]
+                                                                                                      }
+                                                                                                   ],
+                                                                                                   ";",
+                                                                                                   "",
+                                                                                                   RowBox[
+                                                                                                      {
+                                                                                                         "textUnformatted",
+                                                                                                         "[",
+                                                                                                         RowBox[{"ToUpperCase", "[", "code", "]"}],
+                                                                                                         "]"
+                                                                                                      }
+                                                                                                   ],
+                                                                                                   ";",
+                                                                                                   "",
+                                                                                                   RowBox[
+                                                                                                      {
+                                                                                                         "textUnformatted",
+                                                                                                         "[",
+                                                                                                         RowBox[
+                                                                                                            {
+                                                                                                               "\"hello wolfram \"",
+                                                                                                               "<>",
+                                                                                                               RowBox[{"ToString", "[", "i", "]"}]
+                                                                                                            }
+                                                                                                         ],
+                                                                                                         "]"
+                                                                                                      }
+                                                                                                   ],
+                                                                                                   ";"
+                                                                                                }
+                                                                                             ]
+                                                                                          }
+                                                                                       ],
+                                                                                       "",
+                                                                                       "]"
+                                                                                    }
+                                                                                 ],
+                                                                                 ",",
+                                                                                 "",
+                                                                                 RowBox[{"PrintTemporary", "[", "\"closed\"", "]"}]
+                                                                              }
+                                                                           ],
+                                                                           "]"
+                                                                        }
+                                                                     ],
+                                                                     ";",
+                                                                     "",
+                                                                     RowBox[{"end", "[", "]"}],
+                                                                     ";",
+                                                                     "",
+                                                                     RowBox[{"flush", "[", "]"}],
+                                                                     ";"
                                                                   }
                                                                ]
                                                             }
                                                          ],
+                                                         "",
                                                          "]"
                                                       }
-                                                   ],
-                                                   ";",
-                                                   "",
-                                                   RowBox[{"end", "[", "]"}],
-                                                   ";",
-                                                   "",
-                                                   RowBox[{"flush", "[", "]"}],
-                                                   ";"
+                                                   ]
                                                 }
-                                             ]
+                                             ],
+                                             "",
+                                             "]"
                                           }
                                        ],
-                                       "",
-                                       "]"
+                                       ";"
                                     }
                                  ]
                               }
@@ -706,10 +1117,10 @@ Notebook[
                ]
             }
          ],
-         "Input",
-         CellLabel -> "In[56]:="
+         "Input"
       ]
    },
+   DockedCells -> { },
    FrontEndVersion -> "14.2 for Linux x86 (64-bit) (December 26, 2024)",
    StyleDefinitions -> "Default.nb",
    ExpressionUUID -> "8d6ee125-5344-4358-9556-627e0b7cb8da"
